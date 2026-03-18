@@ -103,7 +103,29 @@ h2::after{content:'';flex:1;height:1px;background:var(--border)}
 .asset-icon{font-size:1.2rem}.asset-name{font-size:.85rem;font-weight:600}.asset-desc{font-size:.72rem;color:var(--muted)}
 footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;font-size:.73rem;color:var(--muted)}
 footer span{color:var(--purple-l)}
-@media(max-width:640px){nav{padding:0 1rem;gap:1rem}.container{padding:1.5rem 1rem}.company-grid,.portfolio-grid,.assets-grid{grid-template-columns:1fr}.hero-stats{gap:1rem}}</style>
+@media(max-width:640px){nav{padding:0 1rem;gap:1rem}.container{padding:1.5rem 1rem}.company-grid,.portfolio-grid,.assets-grid{grid-template-columns:1fr}.hero-stats{gap:1rem}}
+.retail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.9rem}
+.retail-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.1rem;transition:all .2s;position:relative;overflow:hidden}
+.retail-card:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.retail-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),#f97316)}
+.retail-name{font-size:.95rem;font-weight:700;margin-bottom:.2rem;color:var(--text)}
+.retail-loc{font-size:.72rem;color:var(--muted);margin-bottom:.3rem}
+.retail-role{font-size:.78rem;color:var(--amber);font-weight:500;margin-bottom:.8rem}
+.retail-footer{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.retail-status-btn{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:4px;cursor:pointer;border:none;font-family:inherit;transition:all .15s}
+.rs-notyet .retail-status-btn{background:rgba(100,116,139,.2);color:var(--muted)}
+.rs-applied .retail-status-btn{background:rgba(245,158,11,.2);color:var(--amber)}
+.rs-closed .retail-status-btn{background:rgba(239,68,68,.15);color:var(--red)}
+.retail-card.rs-applied::before{background:linear-gradient(90deg,var(--amber),#f97316)}
+.retail-card.rs-closed::before{background:var(--red)}
+.retail-link{font-size:.72rem;color:var(--cyan);text-decoration:none;font-weight:500}
+.retail-link:hover{text-decoration:underline}
+.search-links{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
+.search-link{display:flex;align-items:center;gap:.4rem;background:var(--bg2);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:.5rem .9rem;text-decoration:none;color:var(--amber);font-size:.78rem;font-weight:600;transition:all .2s}
+.search-link:hover{background:rgba(245,158,11,.1);border-color:var(--amber)}
+.retail-tip{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:.85rem 1rem;margin-bottom:1.5rem;font-size:.82rem;color:var(--text);line-height:1.6}
+.retail-tip strong{color:var(--amber)}
+</style>
 </head>
 <body>
 <style>
@@ -150,6 +172,7 @@ if(localStorage.getItem('kaden-plan-auth')==='1'){document.addEventListener('DOM
     <a href="#events">Events</a>
     <a href="#boards">Job Boards</a>
     <a href="#assets">Assets</a>
+    <a href="#retail" style="color:var(--amber)">&#127978; Retail Jobs</a>
   </div>
   <button class="btn-reset" onclick="resetAll()">&#9888; Reset All</button>
 </nav>
@@ -418,7 +441,61 @@ function resetAll(){
  COMPANIES.forEach(co=>LS.set('co-status-'+co.id,0));
  renderWeeks();renderCompanies();renderPortfolio();updateStats();
 }
-renderWeeks();renderCompanies();renderPortfolio();renderEvents();renderBoards();renderAssets();updateStats();
+
+const RETAIL_COS=[
+ {id:'advantage',name:'Advantage Solutions',loc:'Irvine, CA (HQ)',role:'Retail Merchandiser / Planogram Specialist',url:'https://www.advantagesolutions.net/careers'},
+ {id:'acosta',name:'Acosta Group',loc:'Orange County, CA',role:'Retail Merchandising Rep / Display Specialist',url:'https://www.acosta.com/careers'},
+ {id:'target',name:'Target',loc:'OC Stores / Distribution',role:'Visual Merchandiser / Planogram Specialist',url:'https://jobs.target.com'},
+ {id:'homedepot',name:'Home Depot',loc:'OC Stores',role:'Merchandising Execution Associate',url:'https://careers.homedepot.com'},
+ {id:'lowes',name:"Lowe's",loc:'OC Stores',role:'Merchandising Service Associate',url:'https://jobs.lowes.com'},
+ {id:'walmart',name:'Walmart / Sam\'s Club',loc:'OC / IE Area',role:'Merchandising Lead / Product Flow',url:'https://careers.walmart.com'},
+ {id:'mcm',name:'MCM / Mosaic',loc:'Remote / OC',role:'Retail Reset Specialist',url:'https://www.mosaicco.com/careers'},
+ {id:'spar',name:'SPAR Group',loc:'OC / SoCal',role:'Retail Merchandiser / Schematic Specialist',url:'https://www.sparinc.com/careers'},
+];
+
+function renderRetail(){
+ const grid=document.getElementById('retail-grid');
+ const statuses=['Not Yet','Applied','Closed'];
+ grid.innerHTML=RETAIL_COS.map(co=>{
+  const saved=LS.get('rs-status-'+co.id)||0;
+  const cls=['rs-notyet','rs-applied','rs-closed'][saved];
+  return `<div class="retail-card ${cls}" id="rcard-${co.id}">
+   <div class="retail-name">${co.name}</div>
+   <div class="retail-loc">📍 ${co.loc}</div>
+   <div class="retail-role">${co.role}</div>
+   <div class="retail-footer">
+    <button class="retail-status-btn" onclick="cycleRetail('${co.id}')">${statuses[saved]}</button>
+    <a href="${co.url}" target="_blank" class="retail-link">Career page ↗</a>
+   </div>
+  </div>`;
+ }).join('');
+}
+function cycleRetail(id){
+ const cur=LS.get('rs-status-'+id)||0;const next=(cur+1)%3;
+ LS.set('rs-status-'+id,next);
+ const card=document.getElementById('rcard-'+id);
+ card.className='retail-card '+['rs-notyet','rs-applied','rs-closed'][next];
+ card.querySelector('.retail-status-btn').textContent=['Not Yet','Applied','Closed'][next];
+}
+
+renderWeeks();renderCompanies();renderPortfolio();renderEvents();renderBoards();renderAssets();renderRetail();updateStats();
 </script>
+
+<section id="retail"><div class="container">
+<h2 style="color:var(--amber)">🏪 Retail / Planogram Jobs</h2>
+<div class="retail-tip"><strong>Your niche:</strong> Planogram creation, product flow, retail display builds. This is a real specialty — here's how to position it.<br><br>
+<strong>Job titles to search:</strong> "Planogram Specialist" · "Visual Merchandiser" · "Retail Reset Specialist" · "Schematic Specialist" · "Merchandising Execution" · "Product Flow Specialist"<br><br>
+<strong>Pro tip:</strong> Advantage Solutions (Irvine HQ) and Acosta are the two biggest retail merchandising agencies in the country. Getting in with either puts you in front of every major retailer in OC.</div>
+<div class="search-links">
+ <a class="search-link" href="https://www.indeed.com/q-planogram-l-orange-county,-ca-jobs.html" target="_blank">🔍 Indeed: Planogram OC</a>
+ <a class="search-link" href="https://www.linkedin.com/jobs/search/?keywords=planogram+specialist&location=Orange+County%2C+CA" target="_blank">🔍 LinkedIn: Planogram OC</a>
+ <a class="search-link" href="https://www.indeed.com/q-visual-merchandiser-l-orange-county,-ca-jobs.html" target="_blank">🔍 Indeed: Visual Merchandiser</a>
+ <a class="search-link" href="https://www.indeed.com/q-retail-reset-specialist-l-orange-county,-ca-jobs.html" target="_blank">🔍 Indeed: Reset Specialist</a>
+ <a class="search-link" href="https://www.advantagesolutions.net/careers" target="_blank">⭐ Advantage Solutions</a>
+</div>
+<h2 style="font-size:.85rem;margin-bottom:1rem;color:var(--amber)">TARGET COMPANIES</h2>
+<div class="retail-grid" id="retail-grid"></div>
+</div></section>
+
 </body>
 </html>
