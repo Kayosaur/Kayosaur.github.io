@@ -106,6 +106,41 @@ footer span{color:var(--purple-l)}
 @media(max-width:640px){nav{padding:0 1rem;gap:1rem}.container{padding:1.5rem 1rem}.company-grid,.portfolio-grid,.assets-grid{grid-template-columns:1fr}.hero-stats{gap:1rem}}</style>
 </head>
 <body>
+<style>
+#pw-gate{position:fixed;inset:0;z-index:9999;background:#0a0a0f;display:flex;align-items:center;justify-content:center}
+.pw-box{background:#10101a;border:1px solid #1e1e38;border-radius:16px;padding:2.5rem 2rem;text-align:center;max-width:340px;width:90%}
+.pw-title{font-size:1.1rem;font-weight:700;color:#e2e8f0;margin-bottom:.4rem}
+.pw-sub{font-size:.8rem;color:#64748b;margin-bottom:1.5rem}
+.pw-input{width:100%;background:#0a0a0f;border:1px solid #1e1e38;border-radius:8px;padding:.7rem 1rem;color:#e2e8f0;font-size:.95rem;font-family:inherit;outline:none;text-align:center;letter-spacing:.05em}
+.pw-input:focus{border-color:#7c3aed}
+.pw-btn{margin-top:.9rem;width:100%;background:#7c3aed;border:none;border-radius:8px;padding:.75rem;color:#fff;font-size:.9rem;font-weight:700;font-family:inherit;cursor:pointer;transition:background .2s}
+.pw-btn:hover{background:#9d6bff}
+.pw-err{font-size:.78rem;color:#ef4444;margin-top:.6rem;min-height:1em}
+</style>
+<div id="pw-gate">
+ <div class="pw-box">
+  <div class="pw-title">🎮 Kaden's Launch Plan</div>
+  <div class="pw-sub">Enter your password to continue</div>
+  <input id="pw-input" class="pw-input" type="password" placeholder="Password" autofocus onkeydown="if(event.key==='Enter')checkPw()"/>
+  <button class="pw-btn" onclick="checkPw()">Unlock</button>
+  <div class="pw-err" id="pw-err"></div>
+ </div>
+</div>
+<script>
+function checkPw(){
+ var v=document.getElementById('pw-input').value;
+ if(v==='CatDog11!'){
+  document.getElementById('pw-gate').style.display='none';
+  localStorage.setItem('kaden-plan-auth','1');
+ } else {
+  document.getElementById('pw-err').textContent='Wrong password. Try again.';
+  document.getElementById('pw-input').value='';
+  document.getElementById('pw-input').focus();
+ }
+}
+if(localStorage.getItem('kaden-plan-auth')==='1'){document.addEventListener('DOMContentLoaded',function(){var g=document.getElementById('pw-gate');if(g)g.style.display='none';});}
+</script>
+
 <nav>
   <div class="nav-brand">&#127918; Kaden's Game Plan</div>
   <div class="nav-links">
