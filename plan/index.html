@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kaden Hart &#8212; Gaming Industry Launch Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0f;--bg2:#10101a;--bg3:#16162a;--purple:#7c3aed;--purple-l:#9d6bff;--cyan:#06b6d4;--cyan-l:#38d8f2;--text:#e2e8f0;--muted:#64748b;--border:#1e1e38;--green:#22c55e;--amber:#f59e0b;--red:#ef4444}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--purple);border-radius:3px}
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;gap:1.5rem;height:52px}
+.nav-brand{font-weight:800;font-size:.85rem;background:linear-gradient(90deg,var(--purple-l),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.nav-links{display:flex;gap:1.25rem;overflow-x:auto;flex:1}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.78rem;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--cyan)}
+.btn-reset{background:transparent;border:1px solid var(--red);color:var(--red);padding:5px 12px;border-radius:6px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:inherit}
+.btn-reset:hover{background:var(--red);color:#fff}
+.container{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+section{margin-bottom:3.5rem}
+h2{font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--cyan);margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
+h2::after{content:'';flex:1;height:1px;background:var(--border)}
+#hero{padding:4rem 0 3rem;text-align:center;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(124,58,237,.2),transparent 70%);pointer-events:none}
+.hero-eyebrow{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--purple-l);margin-bottom:.5rem}
+.hero-title{font-size:clamp(1.8rem,5vw,3rem);font-weight:900;line-height:1.1;background:linear-gradient(135deg,#fff,var(--purple-l) 50%,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.6rem}
+.hero-subtitle{font-size:.95rem;color:var(--muted);margin-bottom:2.5rem}
+.hero-stats{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.stat-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:.9rem 1.5rem;min-width:120px}
+.stat-val{font-size:2rem;font-weight:900;background:linear-gradient(90deg,var(--purple-l),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.stat-label{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.progress-wrap{max-width:500px;margin:0 auto}
+.progress-label{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:.4rem}
+.progress-bar{height:8px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--cyan));border-radius:4px;transition:width .5s}
+.phase-header{margin:1.75rem 0 .6rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.phase-badge{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 10px;border-radius:20px}
+.ph1{background:rgba(124,58,237,.2);color:var(--purple-l);border:1px solid rgba(124,58,237,.4)}
+.ph2{background:rgba(6,182,212,.15);color:var(--cyan);border:1px solid rgba(6,182,212,.4)}
+.ph3{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.4)}
+.week-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;margin-bottom:.65rem;overflow:hidden;transition:border-color .2s}
+.week-card:hover{border-color:rgba(124,58,237,.35)}
+.week-card.current-week{border-color:var(--purple);box-shadow:0 0 0 1px rgba(124,58,237,.25),0 4px 24px rgba(124,58,237,.12)}
+.week-header{display:flex;align-items:center;gap:.75rem;padding:.85rem 1.2rem;cursor:pointer;user-select:none;transition:background .15s}
+.week-header:hover{background:rgba(255,255,255,.02)}
+.week-num{font-size:.68rem;font-weight:700;text-transform:uppercase;color:var(--muted);min-width:46px}
+.week-title{font-size:.9rem;font-weight:600;flex:1}
+.week-dates{font-size:.7rem;color:var(--muted);white-space:nowrap}
+.mini-progress{display:flex;align-items:center;gap:.4rem;font-size:.68rem;color:var(--muted);white-space:nowrap}
+.mini-bar{width:44px;height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.mini-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--cyan));border-radius:2px;transition:width .3s}
+.chevron{font-size:.6rem;color:var(--muted);transition:transform .2s;margin-left:.2rem}
+.week-card.open .chevron{transform:rotate(90deg)}
+.current-badge{font-size:.62rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:4px;background:var(--purple);color:#fff}
+.week-body{display:none;padding:0 1.2rem 1.1rem;border-top:1px solid var(--border)}
+.week-card.open .week-body{display:block}
+.week-tag{display:inline-block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 8px;border-radius:4px;margin:.6rem 0;background:rgba(124,58,237,.15);color:var(--purple-l)}
+.task-list{list-style:none}
+.task-item{display:flex;align-items:flex-start;gap:.65rem;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.task-item:last-child{border-bottom:none}
+.task-check{appearance:none;-webkit-appearance:none;width:17px;height:17px;min-width:17px;border:2px solid var(--border);border-radius:4px;background:var(--bg3);cursor:pointer;transition:all .15s;position:relative;margin-top:3px}
+.task-check:checked{background:var(--purple);border-color:var(--purple)}
+.task-check:checked::after{content:'\\2713';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;color:#fff;font-weight:700}
+.task-check:hover{border-color:var(--purple-l)}
+.task-label{font-size:.875rem;cursor:pointer;transition:color .15s;line-height:1.5}
+.task-check:checked+.task-label{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(100,116,139,.4)}
+.task-link{color:var(--cyan);text-decoration:none;font-size:.72rem;font-weight:500;margin-left:.25rem}
+.task-link:hover{text-decoration:underline}
+.company-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.9rem}
+.company-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.1rem;transition:all .2s;position:relative;overflow:hidden}
+.company-card:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.company-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.s-notyet::before{background:var(--muted)}.s-applied::before{background:linear-gradient(90deg,var(--purple),var(--cyan))}.s-closed::before{background:var(--red)}
+.company-name{font-size:.95rem;font-weight:700;margin-bottom:.2rem}
+.company-loc{font-size:.72rem;color:var(--muted);margin-bottom:.4rem}
+.company-role{font-size:.78rem;color:var(--cyan-l);font-weight:500;margin-bottom:.8rem}
+.company-footer{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.status-btn{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:4px;cursor:pointer;border:none;font-family:inherit;transition:all .15s}
+.s-notyet .status-btn{background:rgba(100,116,139,.2);color:var(--muted)}.s-applied .status-btn{background:rgba(124,58,237,.2);color:var(--purple-l)}.s-closed .status-btn{background:rgba(239,68,68,.15);color:var(--red)}
+.company-link{font-size:.72rem;color:var(--cyan);text-decoration:none;font-weight:500}
+.company-link:hover{text-decoration:underline}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:.7rem}
+.portfolio-item{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;display:flex;align-items:flex-start;gap:.7rem;transition:border-color .2s}
+.portfolio-item:hover{border-color:rgba(124,58,237,.35)}
+.portfolio-item.done{border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.04)}
+.portfolio-label{font-size:.875rem;flex:1;line-height:1.4}
+.events-list{display:flex;flex-direction:column;gap:.7rem}
+.event-item{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.85rem 1.1rem;display:flex;gap:.9rem;align-items:flex-start;transition:border-color .2s}
+.event-item:hover{border-color:rgba(6,182,212,.3)}
+.event-dot{width:9px;height:9px;min-width:9px;border-radius:50%;margin-top:6px}
+.event-name{font-size:.9rem;font-weight:600;margin-bottom:.2rem}
+.event-detail{font-size:.78rem;color:var(--muted)}
+.event-free{font-size:.62rem;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(34,197,94,.15);color:var(--green);margin-left:.5rem;vertical-align:middle}
+.boards-grid{display:flex;flex-wrap:wrap;gap:.65rem}
+.board-link{display:flex;align-items:center;gap:.5rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.6rem 1rem;text-decoration:none;color:var(--text);font-size:.83rem;font-weight:500;transition:all .2s}
+.board-link:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-1px)}
+.assets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.7rem}
+.asset-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:.3rem;transition:all .2s}
+.asset-card:hover{border-color:var(--purple-l);transform:translateY(-1px)}
+.asset-icon{font-size:1.2rem}.asset-name{font-size:.85rem;font-weight:600}.asset-desc{font-size:.72rem;color:var(--muted)}
+footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;font-size:.73rem;color:var(--muted)}
+footer span{color:var(--purple-l)}
+@media(max-width:640px){nav{padding:0 1rem;gap:1rem}.container{padding:1.5rem 1rem}.company-grid,.portfolio-grid,.assets-grid{grid-template-columns:1fr}.hero-stats{gap:1rem}}</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">&#127918; Kaden's Game Plan</div>
+  <div class="nav-links">
+    <a href="#weeks">Weeks</a>
+    <a href="#companies">Companies</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#events">Events</a>
+    <a href="#boards">Job Boards</a>
+    <a href="#assets">Assets</a>
+  </div>
+  <button class="btn-reset" onclick="resetAll()">&#9888; Reset All</button>
+</nav>
+<section id="hero">
+<div class="container">
+  <div class="hero-eyebrow">&#127918; Gaming Industry Launch Plan &middot; 12 Weeks</div>
+  <h1 class="hero-title">Kaden Hart</h1>
+  <p class="hero-subtitle">Goal: Land a QA or narrative design role by Summer 2026</p>
+  <div class="hero-stats">
+    <div class="stat-box"><span class="stat-val" id="cur-week">1</span><span class="stat-label">Current Week</span></div>
+    <div class="stat-box"><span class="stat-val">12</span><span class="stat-label">Total Weeks</span></div>
+    <div class="stat-box"><span class="stat-val" id="done-count">0</span><span class="stat-label">Tasks Done</span></div>
+    <div class="stat-box"><span class="stat-val" id="done-pct">0%</span><span class="stat-label">Complete</span></div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-label"><span>Week 1 &mdash; Mar 17</span><span id="prog-right">8% through the plan</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="hero-bar" style="width:8%"></div></div>
+  </div>
+</div>
+</section>
+<section id="weeks"><div class="container"><h2>&#128197; 12-Week Grind</h2><div id="weeks-wrap"></div></div></section>
+<section id="companies"><div class="container"><h2>&#127970; Target Companies</h2><div class="company-grid" id="co-grid"></div></div></section>
+<section id="portfolio"><div class="container"><h2>&#128193; Portfolio Checklist</h2><div class="portfolio-grid" id="port-grid"></div></div></section>
+<section id="events"><div class="container"><h2>&#128197; Events &amp; Networking</h2><div class="events-list" id="events-wrap"></div></div></section>
+<section id="boards"><div class="container"><h2>&#128269; Job Boards</h2><div class="boards-grid" id="boards-wrap"></div></div></section>
+<section id="assets"><div class="container"><h2>&#128193; Your Assets</h2><div class="assets-grid" id="assets-wrap"></div></div></section>
+<footer>Built for <span>Kaden Hart</span> &middot; Gaming Industry Launch Plan 2026 &middot; Week 1 of 12 &middot; <span>Go get it. &#127918;</span></footer>
+<script>
+const CW=1;
+const W=[
+ {n:1,d:'Mar 17\u201323',t:'Setup & Apply',p:1,tasks:[
+  {id:'w1t1',txt:'Apply to PTW entry-level QA tester (no experience needed)',url:'https://gamejobs.co',ul:'gamejobs.co'},
+  {id:'w1t2',txt:'Set up job alerts on GameJobs.co, LinkedIn, Indeed \u2014 "QA tester" + "Irvine OR Orange County"'},
+  {id:'w1t3',txt:'Attend IGDA OC meetup \u2014 Thu Mar 20, GameCraft Brewing, Laguna Hills, 6\u20139 PM \uD83C\uDF7A'},
+  {id:'w1t4',txt:'Create itch.io profile with D&D worldbuilding bio',url:'https://itch.io',ul:'itch.io'},
+  {id:'w1t5',txt:'Update LinkedIn headline: "Aspiring Narrative Designer & World Builder | QA Ready"',url:'https://linkedin.com',ul:'LinkedIn'},
+ ]},
+ {n:2,d:'Mar 24\u201330',t:'Portfolio Sprint',p:1,tasks:[
+  {id:'w2t1',txt:'Document your best D&D campaign as a professional World Bible'},
+  {id:'w2t2',txt:'Install Twine, build one branching narrative prototype (~30 min playtime)',url:'https://twinery.org',ul:'twinery.org'},
+  {id:'w2t3',txt:'Apply to any new Blizzard Irvine QA openings',url:'https://careers.blizzard.com/global/en/irvine',ul:'Blizzard careers'},
+  {id:'w2t4',txt:'Join 2 Discord servers: Indie Game Developers + Game Writing SIG'},
+ ]},
+ {n:3,d:'Mar 31\u2013Apr 6',t:'Network Push',p:1,tasks:[
+  {id:'w3t1',txt:'Apply to NIS America (Santa Ana) QA if open',url:'https://www.indeed.com/cmp/Nis-America',ul:'Indeed \u2192 NIS America'},
+  {id:'w3t2',txt:'Cold-message 3 people from the IGDA meetup on LinkedIn with a real personal note'},
+  {id:'w3t3',txt:'Finish World Bible draft, post preview on itch.io',url:'https://itch.io',ul:'itch.io'},
+  {id:'w3t4',txt:'Register for next available game jam on itch.io',url:'https://itch.io/jams',ul:'itch.io/jams'},
+ ]},
+ {n:4,d:'Apr 7\u201313',t:'Polish & Expand',p:1,tasks:[
+  {id:'w4t1',txt:'Update kaden-hart.me portfolio with World Bible + Twine project',url:'https://kaden-hart.me',ul:'kaden-hart.me'},
+  {id:'w4t2',txt:'Apply to Visual Concepts / 2K QA roles',url:'https://2k.com/careers',ul:'2K careers'},
+  {id:'w4t3',txt:'Write 1 quest design document (professional format, 1\u20132 pages)'},
+  {id:'w4t4',txt:'Attend IGDA OC April meetup (3rd Thursday of the month)'},
+ ]},
+ {n:5,d:'Apr 14\u201320',t:'Twine Complete',p:2,tasks:[
+  {id:'w5t1',txt:'Finish and publish Twine interactive fiction piece to itch.io',url:'https://itch.io',ul:'itch.io'},
+  {id:'w5t2',txt:'Apply to Obsidian Entertainment QA/Narrative roles',url:'https://careers.microsoft.com',ul:'careers.microsoft.com'},
+  {id:'w5t3',txt:'Apply to Microsoft Gaming Irvine roles',url:'https://careers.microsoft.com',ul:'careers.microsoft.com'},
+  {id:'w5t4',txt:'Review all active applications \u2014 follow up if 2+ weeks no response'},
+ ]},
+ {n:6,d:'Apr 21\u201327',t:'Game Jam + Portfolio',p:2,tasks:[
+  {id:'w6t1',txt:'Enter a game jam with narrative or writing focus',url:'https://itch.io/jams',ul:'itch.io/jams'},
+  {id:'w6t2',txt:'Start building a dedicated narrative portfolio page on kaden-hart.me',url:'https://kaden-hart.me',ul:'kaden-hart.me'},
+  {id:'w6t3',txt:'Add 2 writing samples to portfolio (character brief + faction brief)'},
+  {id:'w6t4',txt:'Attend IGDA OC May meetup (3rd Thursday)'},
+ ]},
+ {n:7,d:'Apr 28\u2013May 4',t:'Network Expansion',p:2,tasks:[
+  {id:'w7t1',txt:'Follow up on all outstanding applications (personalized, not copy-paste)'},
+  {id:'w7t2',txt:'Expand LinkedIn network to 10+ gaming industry contacts'},
+  {id:'w7t3',txt:'Post your game jam project on itch.io + share it in Discord servers'},
+  {id:'w7t4',txt:'Research Riot Games internship and entry openings',url:'https://riotgames.com/en/work-with-us',ul:'Riot careers'},
+ ]},
+ {n:8,d:'May 5\u201311',t:'Portfolio Polish',p:2,tasks:[
+  {id:'w8t1',txt:'Final polish on portfolio site \u2014 mobile check, all links working',url:'https://kaden-hart.me',ul:'kaden-hart.me'},
+  {id:'w8t2',txt:'Write 2 polished writing samples (character brief + faction brief)'},
+  {id:'w8t3',txt:'Apply to Riot Games QA / entry-level roles',url:'https://riotgames.com/en/work-with-us',ul:'Riot careers'},
+  {id:'w8t4',txt:'Update resume with all new portfolio pieces'},
+ ]},
+ {n:9,d:'May 12\u201318',t:'Second Jam + Amazon',p:3,tasks:[
+  {id:'w9t1',txt:'Enter a second game jam if available (narrative or design focus)'},
+  {id:'w9t2',txt:'Apply to Amazon Games Irvine QA roles',url:'https://games.amazon.com/jobs',ul:'Amazon Games jobs'},
+  {id:'w9t3',txt:'Check Activision Santa Monica QA openings',url:'https://careers.activisionblizzard.com',ul:'Activision careers'},
+  {id:'w9t4',txt:'Send thank-you notes to anyone who gave feedback or referrals'},
+ ]},
+ {n:10,d:'May 19\u201325',t:'Broad Follow-Up',p:3,tasks:[
+  {id:'w10t1',txt:'Follow up on ALL outstanding applications \u2014 no ghost without a chase'},
+  {id:'w10t2',txt:'Check Atlus West / SEGA Irvine for Localization QA openings',url:'https://sega.com/careers',ul:'SEGA careers'},
+  {id:'w10t3',txt:'Attend any GDC satellite events or gaming meetups in LA/OC'},
+  {id:'w10t4',txt:'Contribute in 2+ Discord servers this week \u2014 get known, not just lurking'},
+ ]},
+ {n:11,d:'May 26\u2013Jun 1',t:'Cover Letter Refinement',p:3,tasks:[
+  {id:'w11t1',txt:'Rewrite cover letters based on any feedback \u2014 make them sharper'},
+  {id:'w11t2',txt:'Contact Eastridge Staffing about contract QA opportunities',url:'https://eastridge.com',ul:'Eastridge Staffing'},
+  {id:'w11t3',txt:'Contact Wired Talent about contract QA outsourcing roles'},
+  {id:'w11t4',txt:'Do one mock interview \u2014 record yourself answering QA and design questions'},
+ ]},
+ {n:12,d:'Jun 2\u20138',t:'Final Push',p:3,tasks:[
+  {id:'w12t1',txt:'Final application blitz \u2014 hit every company on the target list with updated materials'},
+  {id:'w12t2',txt:'Final portfolio polish \u2014 clean, linked, professional'},
+  {id:'w12t3',txt:'Prep interview talking points: D&D narrative work, game jam projects, QA mindset'},
+  {id:'w12t4',txt:'Start planning GDC 2027 volunteer application (opens ~Sep 2026)',url:'https://gdconf.com/volunteer',ul:'GDC Volunteer'},
+ ]},
+];C',detail:'3rd Thursday monthly \u00b7 GameCraft Brewing, Laguna Hills \u00b7 6\u20139 PM',free:true,url:'https://igda.org'},
+ {color:'#06b6d4',name:'IGDA LA',detail:'Monthly events \u00b7 Various LA locations \u00b7 Check chapter page',free:true,url:'https://igda.org'},
+ {color:'#f59e0b',name:'Game Jams on itch.io',detail:'Check itch.io/jams regularly \u2014 look for narrative, writing, or design-focused jams',free:true,url:'https://itch.io/jams'},
+ {color:'#22c55e',name:'GDC 2027',detail:'March 2027, San Francisco \u00b7 Start planning now \u00b7 Volunteer apps open ~Sep 2026',free:false,url:'https://gdconf.com/volunteer'},
+];
+const BOARDS=[
+ {label:'GameJobs.co',url:'https://gamejobs.co',icon:'\uD83C\uDFAE'},
+ {label:'LinkedIn Game Tester',url:'https://www.linkedin.com/jobs/search/?keywords=game+tester&location=Los+Angeles',icon:'\uD83D\uDCBC'},
+ {label:'Indeed Game Testing CA',url:'https://www.indeed.com/q-game-tester-l-California-jobs.html',icon:'\uD83D\uDD0D'},
+ {label:'ZipRecruiter CA',url:'https://www.ziprecruiter.com/jobs/search?q=game+tester&l=California',icon:'\uD83D\uDCCB'},
+ {label:'Outscal',url:'https://outscal.com/jobs',icon:'\uD83C\uDFAF'},
+ {label:'Remote Game Jobs',url:'https://remotegamejobs.com',icon:'\uD83C\uDF0D'},
+];
+const ASSETS=[
+ {icon:'\uD83D\uDCCB',name:'Your Resume',desc:'Download or update',url:'#'},
+ {icon:'\uD83C\uDF10',name:'Portfolio Site',desc:'kaden-hart.me',url:'https://kaden-hart.me'},
+ {icon:'\uD83D\uDCDD',name:'Internship Plan (Full)',desc:'Complete 12-week document',url:'#'},
+ {icon:'\uD83D\uDCE7',name:'Cover Letter Templates',desc:'Customize per company',url:'#'},
+];
+const PHASES={
+ 1:{label:'Phase 1: Foundation',dates:'Weeks 1\u20134 \u00b7 Mar 17 \u2013 Apr 13',cls:'ph1'},
+ 2:{label:'Phase 2: Production',dates:'Weeks 5\u20138 \u00b7 Apr 14 \u2013 May 11',cls:'ph2'},
+ 3:{label:'Phase 3: Professional Push',dates:'Weeks 9\u201312 \u00b7 May 12 \u2013 Jun 8',cls:'ph3'},
+};
+const LS={
+ get(k){try{return JSON.parse(localStorage.getItem(k))}catch{return null}},
+ set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}},
+};
+function renderWeeks(){
+ const wrap=document.getElementById('weeks-wrap');
+ let html='';let lastPhase=0;
+ W.forEach(wk=>{
+  if(wk.p!==lastPhase){
+   lastPhase=wk.p;const ph=PHASES[wk.p];
+   html+=`<div class="phase-header"><span class="phase-badge ${ph.cls}">${ph.label}</span><span class="phase-dates">${ph.dates}</span></div>`;
+  }
+  const isCurrent=wk.n===CW;
+  const done=wk.tasks.filter(t=>LS.get(t.id)).length;
+  const total=wk.tasks.length;
+  const pct=total?Math.round(done/total*100):0;
+  html+=`<div class="week-card ${isCurrent?'current-week open':''}" id="wk-${wk.n}">
+   <div class="week-header" onclick="toggleWeek(${wk.n})">
+    <span class="week-num">Wk ${wk.n}</span>
+    <span class="week-title">${wk.t}</span>
+    <span class="week-dates">${wk.d}</span>
+    <div class="mini-progress"><div class="mini-bar"><div class="mini-fill" id="mf-${wk.n}" style="width:${pct}%"></div></div><span id="mc-${wk.n}">${done}/${total}</span></div>
+    ${isCurrent?'<span class="current-badge">Now Playing</span>':''}
+    <span class="chevron">\u25B6</span>
+   </div>
+   <div class="week-body">
+    <div class="week-tag">${wk.t}</div>
+    <ul class="task-list">`;
+  wk.tasks.forEach(task=>{
+   const isChecked=LS.get(task.id)||false;
+   const link=task.url?`<a href="${task.url}" target="_blank" class="task-link">\u2197 ${task.ul}</a>`:'';
+   html+=`<li class="task-item"><input type="checkbox" class="task-check" id="${task.id}" ${isChecked?'checked':''} onchange="saveTask('${task.id}',${wk.n})"/><label class="task-label" for="${task.id}">${task.txt}${link}</label></li>`;
+  });
+  html+=`</ul></div></div>`;
+ });
+ wrap.innerHTML=html;updateStats();
+}
+function toggleWeek(n){document.getElementById('wk-'+n).classList.toggle('open')}
+function saveTask(id,wkNum){LS.set(id,document.getElementById(id).checked);updateWeekProgress(wkNum);updateStats()}
+function updateWeekProgress(wkNum){
+ const wk=W.find(w=>w.n===wkNum);if(!wk)return;
+ const done=wk.tasks.filter(t=>LS.get(t.id)).length;
+ const total=wk.tasks.length;
+ const pct=total?Math.round(done/total*100):0;
+ const mf=document.getElementById('mf-'+wkNum);const mc=document.getElementById('mc-'+wkNum);
+ if(mf)mf.style.width=pct+'%';if(mc)mc.textContent=done+'/'+total;
+}
+function updateStats(){
+ const allTasks=W.flatMap(w=>w.tasks);
+ const total=allTasks.length;
+ const done=allTasks.filter(t=>LS.get(t.id)).length;
+ const pct=total?Math.round(done/total*100):0;
+ document.getElementById('done-count').textContent=done;
+ document.getElementById('done-pct').textContent=pct+'%';
+ document.getElementById('prog-right').textContent=pct+'% tasks complete';
+ document.getElementById('hero-bar').style.width=Math.max(8,pct)+'%';
+ document.querySelectorAll('.portfolio-item').forEach(el=>{const cb=el.querySelector('.task-check');if(cb)el.classList.toggle('done',cb.checked)});
+}
+function renderCompanies(){
+ const grid=document.getElementById('co-grid');
+ const statuses=['Not Yet','Applied','Closed'];
+ grid.innerHTML=COMPANIES.map(co=>{
+  const saved=LS.get('co-status-'+co.id)||0;
+  const cls=['s-notyet','s-applied','s-closed'][saved];
+  return `<div class="company-card ${cls}" id="card-${co.id}">
+   <div class="company-name">${co.name}</div>
+   <div class="company-loc">\uD83D\uDCCD ${co.loc}</div>
+   <div class="company-role">${co.role}</div>
+   <div class="company-footer">
+    <button class="status-btn" onclick="cycleStatus('${co.id}')">${statuses[saved]}</button>
+    <a href="${co.url}" target="_blank" class="company-link">\uD83D\uDD17 Careers</a>
+   </div></div>`;
+ }).join('');
+}
+function cycleStatus(id){
+ const cur=LS.get('co-status-'+id)||0;const next=(cur+1)%3;
+ LS.set('co-status-'+id,next);
+ const card=document.getElementById('card-'+id);
+ card.className='company-card '+['s-notyet','s-applied','s-closed'][next];
+ card.querySelector('.status-btn').textContent=['Not Yet','Applied','Closed'][next];
+}
+function renderPortfolio(){
+ const grid=document.getElementById('port-grid');
+ grid.innerHTML=PORTFOLIO.map(item=>{
+  const checked=LS.get(item.id)||false;
+  const link=item.url?`<a href="${item.url}" target="_blank" class="task-link">\u2197 ${item.ul}</a>`:'';
+  return `<div class="portfolio-item ${checked?'done':''}" id="pi-${item.id}">
+   <input type="checkbox" class="task-check" id="${item.id}" ${checked?'checked':''} onchange="savePortfolio('${item.id}')"/>
+   <label class="portfolio-label" for="${item.id}">${item.txt}${link}</label></div>`;
+ }).join('');
+}
+function savePortfolio(id){
+ const el=document.getElementById(id);LS.set(id,el.checked);
+ const pi=document.getElementById('pi-'+id);if(pi)pi.classList.toggle('done',el.checked);
+}
+function renderEvents(){
+ document.getElementById('events-wrap').innerHTML=EVENTS.map(ev=>`
+  <div class="event-item">
+   <div class="event-dot" style="background:${ev.color}"></div>
+   <div>
+    <div class="event-name"><a href="${ev.url}" target="_blank" style="color:inherit;text-decoration:none">${ev.name}</a>${ev.free?'<span class="event-free">FREE</span>':''}</div>
+    <div class="event-detail">${ev.detail}</div>
+   </div></div>`).join('');
+}
+function renderBoards(){
+ document.getElementById('boards-wrap').innerHTML=BOARDS.map(b=>`<a href="${b.url}" target="_blank" class="board-link"><span>${b.icon}</span><span>${b.label}</span></a>`).join('');
+}
+function renderAssets(){
+ document.getElementById('assets-wrap').innerHTML=ASSETS.map(a=>`<a href="${a.url}" class="asset-card"><span class="asset-icon">${a.icon}</span><span class="asset-name">${a.name}</span><span class="asset-desc">${a.desc}</span></a>`).join('');
+}
+function resetAll(){
+ if(!confirm('Reset ALL checkboxes and company statuses? This cannot be undone.'))return;
+ [...W.flatMap(w=>w.tasks),...PORTFOLIO].forEach(t=>LS.set(t.id,false));
+ COMPANIES.forEach(co=>LS.set('co-status-'+co.id,0));
+ renderWeeks();renderCompanies();renderPortfolio();updateStats();
+}
+renderWeeks();renderCompanies();renderPortfolio();renderEvents();renderBoards();renderAssets();updateStats();
+</script>
+</body>
+</html>
